@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+html {
+  font-size: 62.5%;
+
+  @media only screen and (max-width: 992px) {
+    font-size: 56%;
+  }
+  @media only screen and (max-width: 480px) {
+    font-size: 52%;
+  }
+}
+
+body {
+  color: #000;
+  background: #fff;
+  font-size: 1.6rem;
+}
+
+// registrationForm
+.registrationForm {
+  background-image: url("./assets/images/form-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+
+  &__wrapper {
+    max-width: 114rem;
+    margin: 5rem auto;
+    // padding: 0 5rem;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow: hidden;
+
+    @media only screen and (max-width: 992px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .image-box {
+      height: 100%;
+      width: 100%;
+
+      @media only screen and (max-width: 992px) {
+        max-height: 20rem;
+      }
+      // @media only screen and (max-width: 480px) {
+      //   display: none;
+      // }
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .form {
+      padding: 3rem;
+
+      @media only screen and (max-width: 480px) {
+        padding: 1.5rem;
+      }
+
+      .title {
+        font-size: 3.6rem;
+        font-weight: 600;
+        margin-bottom: 1.4rem;
+        color: #4fb1e7;
+      }
+      .text {
+        color: #4fb1e7;
+      }
+
+      .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        margin-top: 3.5rem;
+
+        .input-box {
+          input {
+            height: 100%;
+            width: 100%;
+            padding: 1rem 0;
+            outline: none;
+            border: none;
+            border-bottom: 2px solid #eee;
+            background-color: transparent;
+            font-size: 1.6rem;
+            color: #000;
+            font-weight: 500;
+            text-transform: capitalize;
+
+            &:focus {
+              border-bottom: 2px solid #4fb1e7;
+            }
+          }
+        }
+      }
+
+      .btn-submit {
+        background-color: #4fb1e7;
+        padding: 1.2rem 3rem;
+        border-radius: 0.5rem;
+        font-size: 1.6rem;
+        width: 100%;
+        color: #fff;
+        border: none;
+        outline: none;
+        margin-top: 2rem;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+    }
+  }
+}

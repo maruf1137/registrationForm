@@ -1,5 +1,6 @@
 // import FormValidationHook from "../hooks/FormValidationHook";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+import useFormValidation from "../hooks/useFormValidation ";
 
 const initialInputValues = {
   first_name: "",
@@ -11,36 +12,37 @@ const initialInputValues = {
 };
 
 const RegistrationFrom = () => {
-  // const { inputValues, handleInputValues, setInputValues, initialInputValues } =
-  //   FormValidationHook();
-  const [inputValues, setInputValues] = useState(initialInputValues);
-  const [errors, setErrors] = useState({});
+  const { inputValues, handleInputValues, validateForm, errors, resetForm } =
+    useFormValidation(initialInputValues);
+  // const [inputValues, setInputValues] = useState(initialInputValues);
+  // const [errors, setErrors] = useState({});
 
-  const handleInputValues = (e) => {
-    setInputValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  // const handleInputValues = (e) => {
+  //   setInputValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  // };
 
-  const validateForm = () => {
-    let isValid = true;
-    let newErrors = {};
+  // const validateForm = () => {
+  //   let isValid = true;
+  //   let newErrors = {};
 
-    Object.keys(inputValues).forEach((key) => {
-      if (!inputValues[key]) {
-        isValid = false;
-        newErrors[key] = `${key.replace("_", " ")} is required.`;
-      }
-    });
+  //   Object.keys(inputValues).forEach((key) => {
+  //     if (!inputValues[key]) {
+  //       isValid = false;
+  //       newErrors[key] = `${key.replace("_", " ")} is required.`;
+  //     }
+  //   });
 
-    setErrors(newErrors);
-    return isValid;
-  };
+  //   setErrors(newErrors);
+  //   return isValid;
+  // };
 
   const handleSubmit = () => {
+    // e.preventDefault();
+
     if (validateForm()) {
       console.log(inputValues);
       // Clear form after successful submission
-      setInputValues(initialInputValues);
-      setErrors({});
+      resetForm();
     }
   };
 

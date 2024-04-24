@@ -1,6 +1,5 @@
-// import FormValidationHook from "../hooks/FormValidationHook";
-// import { useEffect, useState } from "react";
 import useFormValidation from "../hooks/useFormValidation ";
+import FormImg from "../assets/images/form-img.jpg";
 
 const initialInputValues = {
   first_name: "",
@@ -14,31 +13,8 @@ const initialInputValues = {
 const RegistrationFrom = () => {
   const { inputValues, handleInputValues, validateForm, errors, resetForm } =
     useFormValidation(initialInputValues);
-  // const [inputValues, setInputValues] = useState(initialInputValues);
-  // const [errors, setErrors] = useState({});
-
-  // const handleInputValues = (e) => {
-  //   setInputValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  // };
-
-  // const validateForm = () => {
-  //   let isValid = true;
-  //   let newErrors = {};
-
-  //   Object.keys(inputValues).forEach((key) => {
-  //     if (!inputValues[key]) {
-  //       isValid = false;
-  //       newErrors[key] = `${key.replace("_", " ")} is required.`;
-  //     }
-  //   });
-
-  //   setErrors(newErrors);
-  //   return isValid;
-  // };
 
   const handleSubmit = () => {
-    // e.preventDefault();
-
     if (validateForm()) {
       console.log(inputValues);
       // Clear form after successful submission
@@ -50,7 +26,7 @@ const RegistrationFrom = () => {
     <div className="registrationForm">
       <div className="registrationForm__wrapper">
         <div className="image-box">
-          <img src="/src/assets/images/form-img.jpg" alt="" />
+          <img src={FormImg} alt="" />
         </div>
         <div className="form">
           <h2 className="title">Registration</h2>

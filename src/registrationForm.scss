@@ -111,6 +111,14 @@ body {
             }
           }
         }
+        .has-error {
+          input {
+            border-bottom: 2px solid red;
+          }
+          .text {
+            color: red;
+          }
+        }
       }
 
       .btn-submit {

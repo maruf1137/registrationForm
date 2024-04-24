@@ -1,12 +1,47 @@
-import FormValidationHook from "../hooks/FormValidationHook";
+// import FormValidationHook from "../hooks/FormValidationHook";
+import { useEffect, useState } from "react";
+
+const initialInputValues = {
+  first_name: "",
+  last_name: "",
+  email: "",
+  contact: "",
+  password: "",
+  confirm_password: "",
+};
 
 const RegistrationFrom = () => {
-  const { inputValues, handleInputValues, setInputValues, initialInputValues } =
-    FormValidationHook();
+  // const { inputValues, handleInputValues, setInputValues, initialInputValues } =
+  //   FormValidationHook();
+  const [inputValues, setInputValues] = useState(initialInputValues);
+  const [errors, setErrors] = useState({});
+
+  const handleInputValues = (e) => {
+    setInputValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+    let newErrors = {};
+
+    Object.keys(inputValues).forEach((key) => {
+      if (!inputValues[key]) {
+        isValid = false;
+        newErrors[key] = `${key.replace("_", " ")} is required.`;
+      }
+    });
+
+    setErrors(newErrors);
+    return isValid;
+  };
 
   const handleSubmit = () => {
-    console.log(inputValues);
-    setInputValues(initialInputValues);
+    if (validateForm()) {
+      console.log(inputValues);
+      // Clear form after successful submission
+      setInputValues(initialInputValues);
+      setErrors({});
+    }
   };
 
   return (
@@ -23,7 +58,8 @@ const RegistrationFrom = () => {
           </p>
 
           <div className="input-wrapper">
-            <div className="input-box">
+            <div
+              className={`input-box ${errors.first_name ? "has-error" : ""}`}>
               <input
                 type="text"
                 name="first_name"
@@ -31,8 +67,9 @@ const RegistrationFrom = () => {
                 value={inputValues.first_name}
                 onChange={handleInputValues}
               />
+              {errors.first_name && <p className="text">{errors.first_name}</p>}
             </div>
-            <div className="input-box">
+            <div className={`input-box ${errors.last_name ? "has-error" : ""}`}>
               <input
                 type="text"
                 name="last_name"
@@ -40,8 +77,9 @@ const RegistrationFrom = () => {
                 value={inputValues.last_name}
                 onChange={handleInputValues}
               />
+              {errors.last_name && <p className="text">{errors.last_name}</p>}
             </div>
-            <div className="input-box">
+            <div className={`input-box ${errors.email ? "has-error" : ""}`}>
               <input
                 type="email"
                 name="email"
@@ -49,8 +87,9 @@ const RegistrationFrom = () => {
                 value={inputValues.email}
                 onChange={handleInputValues}
               />
+              {errors.email && <p className="text">{errors.email}</p>}
             </div>
-            <div className="input-box">
+            <div className={`input-box ${errors.contact ? "has-error" : ""}`}>
               <input
                 type="number"
                 name="contact"
@@ -58,8 +97,9 @@ const RegistrationFrom = () => {
                 value={inputValues.contact}
                 onChange={handleInputValues}
               />
+              {errors.contact && <p className="text">{errors.contact}</p>}
             </div>
-            <div className="input-box">
+            <div className={`input-box ${errors.password ? "has-error" : ""}`}>
               <input
                 type="password"
                 name="password"
@@ -67,8 +107,12 @@ const RegistrationFrom = () => {
                 value={inputValues.password}
                 onChange={handleInputValues}
               />
+              {errors.password && <p className="text">{errors.password}</p>}
             </div>
-            <div className="input-box">
+            <div
+              className={`input-box ${
+                errors.confirm_password ? "has-error" : ""
+              }`}>
               <input
                 type="password"
                 name="confirm_password"
@@ -76,6 +120,9 @@ const RegistrationFrom = () => {
                 value={inputValues.confirm_password}
                 onChange={handleInputValues}
               />
+              {errors.confirm_password && (
+                <p className="text">{errors.confirm_password}</p>
+              )}
             </div>
           </div>
           <p className="text">
